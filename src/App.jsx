@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Card,
@@ -8,112 +8,205 @@ import {
   Button,
   Grid,
   Link,
-  Container,
+  Dialog,
+  DialogContent,
+  IconButton,
 } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PhoneIcon from "@mui/icons-material/Phone";
+import CloseIcon from "@mui/icons-material/Close";
 
 const products = [
   {
-    name: "Ocean Wave Tray",
-    price: "₹1,500",
-    image: "/screenshot(7).png",
+    name: "mickey mouse keychain",
+    price: "starting from 150 ₹",
+    image: "/images/1.jpg",
   },
   {
-    name: "Floral Coasters (Set of 4)",
-    price: "₹800",
-    image: "/images/floral-coasters.jpg",
+    name: "Flower petal keychain ",
+    price: "starting from 150 ₹",
+    image: "/images/10.jpg",
   },
   {
-    name: "Geode Wall Art",
-    price: "₹2,200",
-    image: "/images/geode-wall.jpg",
+    name: "Flower petal keychain ",
+    price: "starting from 150 ₹",
+    image: "/images/11.jpg",
+  },
+  {
+    name: "resin company logo coaster",
+    price: "starting from 450 ₹",
+    image: "/images/2.jpg",
+  },
+  {
+    name: "resin company logo coaster",
+    price: "starting from 450 ₹",
+    image: "/images/3.jpg",
+  },
+  {
+    name: "customized resin photo keychain",
+    price: "starting from 180 ₹",
+    image: "/images/4.jpg",
+  },
+  {
+    name: " customized Resin photo fridge megnate",
+    price: "starting from 450 ₹",
+    image: "/images/5.jpg",
+  },
+  {
+    name: " customized Resin photo fridge megnate",
+    price: "starting from 450 ₹",
+    image: "/images/7.jpg",
+  },
+  {
+    name: " 12 inch resin varmala preservation clock ",
+    price: "starting from 2500 ₹",
+    image: "/images/8.jpg",
+  },
+  {
+    name: " 12 inch resin varmala preservation clock ",
+    price: "starting from 2500 ₹",
+    image: "/images/9.jpg",
+  },
+  {
+    name: " 8 inch resin photoframe with rose preservation ",
+    price: "starting from 1500 ₹",
+    image: "/images/12.jpg",
+  },
+  {
+    name: " 8 inch resin photoframe ",
+    price: "starting from 1500 ₹",
+    image: "/images/13.jpg",
   },
 ];
 
+const whatsappNumber = "7874501471";
+
 export default function App() {
+  const [open, setOpen] = useState(false);
+  const [zoomImage, setZoomImage] = useState("");
+
+  const handleImageClick = (img) => {
+    setZoomImage(img);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setZoomImage("");
+  };
+
+  const handleEnquiry = (productName) => {
+    const message = encodeURIComponent(`Hi, I would like more information about "${productName}".`);
+    const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <Box
       sx={{
+        width: "100vw",
         minHeight: "100vh",
         background: "linear-gradient(to right, #fff1f2, #f3e8ff)",
         py: 6,
-        display: "flex",
-        flexDirection: "column",
+        px: { xs: 2, md: 6 },
+        boxSizing: "border-box",
       }}
     >
-      <Container maxWidth="lg">
-        {/* Header */}
-        <Box textAlign="center" mb={4}>
-          <Typography variant="h3" fontWeight="bold" color="secondary.main" gutterBottom>
-            Aaraksha Resin Art
-          </Typography>
-          <Typography variant="h6" color="text.secondary">
-            Elegance in Every Pour
-          </Typography>
-          <Box display="flex" justifyContent="center" gap={3} mt={2}>
-            <Link
-              href="https://www.instagram.com/araksha_resin?igsh=MTl3aHIxN2d2c2U5cg=="
-              target="_blank"
-              underline="hover"
-              color="secondary"
-              fontWeight="bold"
-            >
-              <InstagramIcon sx={{ verticalAlign: "middle", mr: 1 }} />
-              Instagram
-            </Link>
-            <Link
-              href="tel:+919876543210"
-              underline="hover"
-              color="secondary"
-              fontWeight="bold"
-            >
-              <PhoneIcon sx={{ verticalAlign: "middle", mr: 1 }} />
-              +91 98765 43210
-            </Link>
-          </Box>
-        </Box>
-
-        {/* Product Grid */}
-        <Grid container spacing={4} justifyContent="center">
-          {products.map((product, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card
-                elevation={5}
-                sx={{ height: "100%", display: "flex", flexDirection: "column" }}
-              >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={product.image}
-                  alt={product.name}
-                />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography variant="h6" color="primary">
-                    {product.name}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    {product.price}
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    fullWidth
-                    sx={{ mt: 2 }}
-                  >
-                    Enquire Now
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-
-        {/* Footer */}
-        <Typography align="center" color="text.secondary" mt={6}>
-          © 2025 Aaraksha Resin Art. All rights reserved.
+      {/* Header */}
+      <Box textAlign="center" mb={4}>
+        <Typography variant="h3" fontWeight="bold" color="secondary.main" gutterBottom>
+          Aaraksha Resin Art
         </Typography>
-      </Container>
+        <Typography variant="h6" color="text.secondary">
+          Elegance in Every Pour
+        </Typography>
+        <Box display="flex" justifyContent="center" gap={3} mt={2} flexWrap="wrap">
+          <Link
+            href="https://www.instagram.com/araksha_resin?igsh=MTl3aHIxN2d2c2U5cg=="
+            target="_blank"
+            underline="hover"
+            color="secondary"
+            fontWeight="bold"
+          >
+            <InstagramIcon sx={{ verticalAlign: "middle", mr: 1 }} />
+            Instagram
+          </Link>
+          <Link
+            href={`https://wa.me/${whatsappNumber}`}
+            target="_blank"
+            underline="hover"
+            color="secondary"
+            fontWeight="bold"
+          >
+            <PhoneIcon sx={{ verticalAlign: "middle", mr: 1 }} />
+            +91 7874501471
+          </Link>
+        </Box>
+      </Box>
+
+      {/* Product Grid */}
+      <Grid container spacing={4} justifyContent="center">
+        {products.map((product, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Card elevation={5} sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+              <CardMedia
+                component="img"
+                height="200"
+                image={product.image}
+                alt={product.name}
+                sx={{ cursor: "pointer" }}
+                onClick={() => handleImageClick(product.image)}
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" color="primary">
+                  {product.name}
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  {product.price}
+                </Typography>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  fullWidth
+                  sx={{ mt: 2 }}
+                  onClick={() => handleEnquiry(product.name)}
+                >
+                  Enquire Now
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+
+      {/* Image Zoom Modal */}
+      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+        <IconButton
+          onClick={handleClose}
+          sx={{ position: "absolute", top: 8, right: 8, color: "white", zIndex: 10 }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent sx={{ p: 0, backgroundColor: "#000" }}>
+          <img
+            src={zoomImage}
+            alt="Zoomed"
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "contain",
+              display: "block",
+              maxHeight: "90vh",
+              margin: "0 auto",
+            }}
+          />
+        </DialogContent>
+      </Dialog>
+
+      {/* Footer */}
+      <Typography align="center" color="text.secondary" mt={6}>
+        © 2025 Aaraksha Resin Art. All rights reserved.
+      </Typography>
     </Box>
   );
 }

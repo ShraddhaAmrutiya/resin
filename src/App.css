@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,30 @@
 
 .read-the-docs {
   color: #888;
+} */
+
+
+/* index.css or App.css */
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+}
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to right, #fff1f2, #f3e8ff);
+  overflow-x: hidden;
+}
+
+/* Optional cleanup of default styles */
+#root {
+  display: flex;
+  flex-direction: column;
 }
