@@ -3,7 +3,6 @@ import {
   Box,
   Card,
   CardContent,
-  CardMedia,
   Typography,
   Button,
   Grid,
@@ -17,66 +16,20 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import CloseIcon from "@mui/icons-material/Close";
 
 const products = [
-  {
-    name: "mickey mouse keychain",
-    price: "starting from 150 ₹",
-    image: "/images/1.jpg",
-  },
-  {
-    name: "Flower petal keychain ",
-    price: "starting from 150 ₹",
-    image: "/images/10.jpg",
-  },
-  {
-    name: "Flower petal keychain ",
-    price: "starting from 150 ₹",
-    image: "/images/11.jpg",
-  },
-  {
-    name: "resin company logo coaster",
-    price: "starting from 450 ₹",
-    image: "/images/2.jpg",
-  },
-  {
-    name: "resin company logo coaster",
-    price: "starting from 450 ₹",
-    image: "/images/3.jpg",
-  },
-  {
-    name: "customized resin photo keychain",
-    price: "starting from 180 ₹",
-    image: "/images/4.jpg",
-  },
-  {
-    name: " customized Resin photo fridge megnate",
-    price: "starting from 450 ₹",
-    image: "/images/5.jpg",
-  },
-  {
-    name: " customized Resin photo fridge megnate",
-    price: "starting from 450 ₹",
-    image: "/images/7.jpg",
-  },
-  {
-    name: " 12 inch resin varmala preservation clock ",
-    price: "starting from 2500 ₹",
-    image: "/images/8.jpg",
-  },
-  {
-    name: " 12 inch resin varmala preservation clock ",
-    price: "starting from 2500 ₹",
-    image: "/images/9.jpg",
-  },
-  {
-    name: " 8 inch resin photoframe with rose preservation ",
-    price: "starting from 1500 ₹",
-    image: "/images/12.jpg",
-  },
-  {
-    name: " 8 inch resin photoframe ",
-    price: "starting from 1500 ₹",
-    image: "/images/13.jpg",
-  },
+  { name: "Braclate rakhi", price: "starting from 150 ₹", image: "/images/r1.jpg" },
+  { name: "Rakhi", price: "starting from 100 ₹", image: "/images/r2.jpg" },
+  { name: "mickey mouse keychain", price: "starting from 150 ₹", image: "/images/1.jpg" },
+  { name: "Flower petal keychain ", price: "starting from 150 ₹", image: "/images/10.jpg" },
+  { name: "Flower petal keychain ", price: "starting from 150 ₹", image: "/images/11.jpg" },
+  { name: "resin company logo coaster", price: "starting from 450 ₹", image: "/images/2.jpg" },
+  { name: "resin company logo coaster", price: "starting from 450 ₹", image: "/images/3.jpg" },
+  { name: "customized resin photo keychain", price: "starting from 180 ₹", image: "/images/4.jpg" },
+  { name: "customized Resin photo fridge megnate", price: "starting from 450 ₹", image: "/images/5.jpg" },
+  { name: "customized Resin photo fridge megnate", price: "starting from 450 ₹", image: "/images/7.jpg" },
+  { name: "12 inch resin varmala preservation clock", price: "starting from 2500 ₹", image: "/images/8.jpg" },
+  { name: "12 inch resin varmala preservation clock", price: "starting from 2500 ₹", image: "/images/9.jpg" },
+  { name: "8 inch resin photoframe with rose preservation", price: "starting from 1500 ₹", image: "/images/12.jpg" },
+  { name: "8 inch resin photoframe", price: "starting from 1500 ₹", image: "/images/13.jpg" },
 ];
 
 const whatsappNumber = "7874501471";
@@ -149,14 +102,33 @@ export default function App() {
         {products.map((product, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card elevation={5} sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-              <CardMedia
-                component="img"
-                height="200"
-                image={product.image}
-                alt={product.name}
-                sx={{ cursor: "pointer" }}
+              {/* Image with fixed white frame */}
+              <Box
+                sx={{
+                  height: 200,
+                  width: "100%",
+                  backgroundColor: "#fff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                }}
                 onClick={() => handleImageClick(product.image)}
-              />
+              >
+                <Box
+                  component="img"
+                  src={product.image}
+                  alt={product.name}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </Box>
+
+              {/* Product Content */}
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h6" color="primary">
                   {product.name}
@@ -181,10 +153,7 @@ export default function App() {
 
       {/* Image Zoom Modal */}
       <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-        <IconButton
-          onClick={handleClose}
-          sx={{ position: "absolute", top: 8, right: 8, color: "white", zIndex: 10 }}
-        >
+        <IconButton onClick={handleClose} sx={{ position: "absolute", top: 8, right: 8, color: "white", zIndex: 10 }}>
           <CloseIcon />
         </IconButton>
         <DialogContent sx={{ p: 0, backgroundColor: "#000" }}>
